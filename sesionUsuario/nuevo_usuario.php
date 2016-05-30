@@ -19,17 +19,29 @@ if (!isset($_SESSION["usuario"])) {
     </head>
 
     <header id="main-header">
-       <a id="logo-header" href="../index.php">
-            <span class="logo"></span>
-            <span class="site-name">eComic</span>
+       <a id="logo-header" href="index.php">
+            <span class="site-name">eComics</span>
         </a>
 
         <nav>
             <ul>
-            <li><a href="../nosotros.php">Nosotros</a></li>
-            <li><a href="../carrito/carritoMenu.php">Carrito   </a></li>
-            <li><a href="../contacto.phpc"> Contacto       </a></li>
-            <li><a href="../categorias/cat_menu.php">Productos</a></li>
+            <li><a href="nosotros.php">Nosotros</a></li>
+            <li><a href="contacto.php"> Contacto       </a></li>
+            <li><a href="categorias/cat_menu.php">Productos</a></li>
+            <li><a href="carrito/carritoMenu.php">Carrito   </a></li>
+            <?php
+                if(isset($_SESSION["registrado"])){
+                    echo "<li><a href = 'carrito/misCompras.php'>Mis compras</a></li>";
+                }
+
+                if(isset($_SESSION["admin"])){
+                    if($_SESSION["admin"]){
+                        echo "<li><a href = 'admin/listaUsuarios.php' class='main'>Usuarios</a></li>";
+                        echo "<li><a href = 'tabla/vista/index.php' class='main'>Admon.</a></li>&nbsp";
+                        echo "<li><a href = 'tabla/vista/modificarInformacion.php' class='main'>Lista Productos</a></li>&nbsp";
+                    }
+                }
+            ?>
             </ul>
         </nav>
 
