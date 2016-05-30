@@ -205,6 +205,34 @@
 }
 </style>
 	</head>
+	<header id="main-header">
+       <a id="logo-header" href="index.php">
+            <span class="site-name">eComics</span>
+        </a>
+
+        <nav>
+            <ul>
+            <li><a href="nosotros.php">Nosotros</a></li>
+            <li><a href="contacto.php"> Contacto       </a></li>
+            <li><a href="categorias/cat_menu.php">Productos</a></li>
+            <li><a href="carrito/carritoMenu.php">Carrito   </a></li>
+            <?php
+                if(isset($_SESSION["registrado"])){
+                    echo "<li><a href = 'carrito/misCompras.php'>Mis compras</a></li>";
+                }
+
+                if(isset($_SESSION["admin"])){
+                    if($_SESSION["admin"]){
+                        echo "<li><a href = 'admin/listaUsuarios.php' class='main'>Usuarios</a></li>";
+                        echo "<li><a href = 'tabla/vista/index.php' class='main'>Admon.</a></li>&nbsp";
+                        echo "<li><a href = 'tabla/vista/modificarInformacion.php' class='main'>Lista Productos</a></li>&nbsp";
+                    }
+                }
+            ?>
+            </ul>
+        </nav>
+
+    </header>
 	<body>
 <?php
 if (!isset($_SESSION["registrado"])) {
@@ -231,50 +259,22 @@ if (!isset($_SESSION["registrado"])) {
 
         <div id="total">
             <div id="contenido">
-                <div id="cabeceraCuerpo">
-                    <div id="navCuerpo">
-                        <ul id="menuCabecera">
-                            <li><a href="../../index.php" class="main">Inicio</a></li>
-                            <li><a href="../../nosotros.php" class="main">Nosotros</a></li>
-                            <li><a href="../../categorias/cat_menu.php" class="main">Productos</a></li>
-                            <li><a href="../../contacto.php" class="main">Contacto</a></li>
-                            <li><a href="../../carrito/carritoMenu.php" class="main">Carrito</a></li>
-                            <?php
-                                if(isset($_SESSION["admin"])){
-                                    if($_SESSION["admin"]){
-                                        echo "<li><a href = '../../admin/listaUsuarios.php' class='main'>Usuarios</a></li>&nbsp";
-                                        echo "<li><a href = 'index.php' class='main'>Admon.</a></li>&nbsp";
-                                        echo "<li><a href = 'modificarInformacion.php' class='main'>Lista Productos</a></li>&nbsp";
-                                        
-                                    }
-                                }
-                                if(isset($_SESSION["registrado"])){
-                                    echo "<li><a href = '../../carrito/misCompras.php' class='main'>Mis compras</a></li>";
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                </div>
                 <br/><br/><br/><br/>
                 <div class="contacto_caja" style="clear:both;">
                     <fieldset>
-                        <legend>Editar Informaci&oacute;n</legend>>
+                        <legend>Editar Informaci&oacute;n</legend>
                         <form action="" method="post" id="formulario">
                             <input type="text" name="boxBuscar" id="boxBuscar" autofocus="autofocus" value="" placeholder="Ingrese un dato." />
                             <input type="submit" name="botonBuscar" value="Buscar" id="botonBuscar" style="width:55px"/>
                             <input type="submit" name="botonListar" value="Listar Todos" id="botonListar" style="width:80px"/>
-                            <br/><br/><br/>
-                            <br />
-                                <?php
-                            //----------------------BUSCAR USUARIO---------------------------------------------------------------------------
+                            <?php
                             if (isset($_POST["botonBuscar"]) && $_POST["boxBuscar"] != "") {
                                 $objModelo->buscar($_POST["boxBuscar"]);
                             } else {
                                 $objModelo->listar();
                             }
                             ?>
-                            <br />
-                            <br />
+
                         </form>
                     </fieldset>
                 </div>
@@ -286,7 +286,7 @@ if (!isset($_SESSION["registrado"])) {
         </div>
 
         <div id="caja" class="ventana_flotante">
-            <h1>Inicio de Sesión</h1>
+            <h1>Inicio de Sesi&oacute;n</h1>
             <form id="formulario" action="sesionUsuario/inicioSesion.php" method="post" onsubmit="return validar(this);">
                 <table>
                     <tr>
@@ -294,7 +294,7 @@ if (!isset($_SESSION["registrado"])) {
                         <td><input type="text" name="usuario" value = ""/></td>
                     </tr>
                     <tr>
-                        <td class="label">Contraseña:</td>
+                        <td class="label">Contrase�a:</td>
                         <td><input type="password" name="contrasena" value = ""/></td>
                     </tr>
                     <tr>
