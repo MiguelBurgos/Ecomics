@@ -1,0 +1,5 @@
+para los productos la nomenclatura es la siguiente
+
+nombre del manga o comic _ numero de la portada o volúmen/tomo del manga:
+
+nombrePortada_numeroPortada
